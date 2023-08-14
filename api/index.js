@@ -11,7 +11,7 @@ app.use(
     }),
     routes
 )
-routes.get('^/$|?challenger',(req,res)=>{
+routes.get('^/$|/challenger',(req,res)=>{
     res.sendFile(path.resolve(__dirname,'./static/html/index.html'))
 })
 
