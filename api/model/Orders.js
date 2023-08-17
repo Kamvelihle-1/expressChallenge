@@ -44,9 +44,9 @@ class Orders{
     }
     updateOrder(req,res){
         const query =`
-        UPDATE books
+        UPDATE orders
         SET ?
-        WHERE bookID = ${req.params.id};
+        WHERE orderID = ${req.params.id};
         `
         db.query(query,[req.body],(err)=>{
             if (err) throw err
@@ -58,8 +58,8 @@ class Orders{
     }
     deleteOrder(req,res){
         const query =`
-        DELETE FROM books
-        WHERE bookID = ${req.params.id};
+        DELETE FROM orders
+        WHERE orderID = ${req.params.id};
         `
       db.query(query,(err)=>{
         if(err) throw err
@@ -71,9 +71,15 @@ class Orders{
     }
     addOrder(req,res){
         const data =req.body
+        const uID =req.params.userID
+        const oID =req.params.orderID
+        const bID = req.params.bookID 
+        // const dt= new Date()
+        // const ndt = `${dt.getFullYear()}-${dt.getMonth() +1}-${dt.getDate()}`  
         const query =`
-        INSERT INTO books
-        SET ? 
+        INSERT INTO orders
+        (orderID,userID,bookID,)
+        VALUES('${oID}',${uID},'${bID}')
         `
         db.query(query,[data],(err)=>{
             if(err) throw err
